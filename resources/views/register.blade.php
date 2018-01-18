@@ -45,6 +45,13 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input id="email" name="email" type="email">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
                     <i class="material-icons prefix">vpn_key</i>
                     <input id="pass" name="password" type="password">
                     <label for="pass">Password</label>
