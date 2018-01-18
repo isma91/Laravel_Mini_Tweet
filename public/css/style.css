@@ -1,0 +1,58 @@
+@font-face {
+	font-family: 'Abel-Regular';
+	font-style: normal;
+	src: url('../font/Abel-Regular.ttf');
+}
+html,body {
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Abel-Regular', sans-serif;
+}
+
+.center {
+	text-align: center;
+}
+
+.btn,
+.btn:hover {
+	background-color: #000000;
+}
+
+.input-field label,
+.input-field .prefix {
+	color: #808080;
+}
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=password]:focus + label,
+.materialize-textarea:focus + label,
+.input-field .prefix.active {
+	color: #000000 !important;
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=password]:focus {
+	border-bottom: 1px solid #000000 !important;
+	box-shadow: 0 1px 0 0 #000000 !important;
+}
+
+#toast-container {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+.alert-success {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #008000;
+}
+.alert-failed {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #FF0000;
+}
