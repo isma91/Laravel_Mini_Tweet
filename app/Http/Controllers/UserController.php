@@ -40,8 +40,21 @@ class UserController extends Controller
             Session::flash('message', 'The following field are empty: ' . $fields . ' !!');
             Session::flash('alert-class', 'alert-failed');
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Session::flash('message', 'Your email is not valid !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()-back();
         } elseif (strlen($pass) <= 3 || strlen($pass2) <= 3) {
+            Session::flash('message', 'The two password fields must be at least 4 characters long !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()-back();
         } elseif ($pass !== $pass2) {
+            Session::flash('message', 'The two password field must be the same !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()-back();
+        } elseif (strlen($username) <= 3) {
+            Session::flash('message', 'The username must be at least 4 characters long !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()-back();
         } else {
             $user = [
                 'firstname' => $firstname,
