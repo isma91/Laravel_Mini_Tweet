@@ -22,3 +22,7 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 });
+
+Route::get('/forgotPass', function () {
+    return view('forgotPass');
+});
