@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/materialize.min.js') }}"></script>
-    <title>Laravel</title>
+    <title>Mini Tweet</title>
 </head>
 <body>
     <div class="container">
