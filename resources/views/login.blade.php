@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/login.js') }}"></script>
     <title>Mini Tweet</title>
 </head>
 <body>
@@ -26,7 +27,8 @@
         </div>
     </div>
     <div class="container">
-        <form class="row">
+        <form id="loginForm" action="{{ url('/login') }}" method="POST" class="row">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
@@ -42,7 +44,7 @@
                 </div>
             </div>
             <div class="row center">
-                <a class="btn waves-effect waves-light">Login</a>
+                <button class="btn waves-effect waves-light" id="login" type="submit">Login</button>
             </div>
             <div class="row">
                 <a href="register" class="right">Don't have an account ?</a>
