@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function register(Request $request) {
-
         $errField = [];
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
@@ -31,6 +30,8 @@ class UserController extends Controller
                 array_push($errField, $value);
             }
         }
+        $checkDuplicateUsername = DB::table('users')->select('login')->where('login',  '=', $username)->get();
+        $checkDuplicateEmail = DB::table('users')->select('email')->where('email',  '=', $email)->get();
         if (count($errField) > 0) {
             $fields = "";
             foreach($errField as $key => $value) {
@@ -42,19 +43,27 @@ class UserController extends Controller
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             Session::flash('message', 'Your email is not valid !!');
             Session::flash('alert-class', 'alert-failed');
-            return redirect()-back();
+            return redirect()->back();
         } elseif (strlen($pass) <= 3 || strlen($pass2) <= 3) {
             Session::flash('message', 'The two password fields must be at least 4 characters long !!');
             Session::flash('alert-class', 'alert-failed');
-            return redirect()-back();
+            return redirect()->back();
         } elseif ($pass !== $pass2) {
             Session::flash('message', 'The two password field must be the same !!');
             Session::flash('alert-class', 'alert-failed');
-            return redirect()-back();
+            return redirect()->back();
         } elseif (strlen($username) <= 3) {
             Session::flash('message', 'The username must be at least 4 characters long !!');
             Session::flash('alert-class', 'alert-failed');
-            return redirect()-back();
+            return redirect()->back();
+        } elseif (!$checkDuplicateEmail->isEmpty()) {
+            Session::flash('message', 'Email already taken !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()->back();
+        } elseif (!$checkDuplicateUsername->isEmpty()) {
+            Session::flash('message', 'Username already taken !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()->back();
         } else {
             $user = [
                 'firstname' => $firstname,
