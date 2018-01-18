@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('login')->unique();
             $table->text('pass');
             $table->string('email')->unique();
-            $table->text('token');
+            $table->text('token')->nullable();
             $table->text('avatar')->nullable();
             $table->integer('active')->default(1);
             $table->timestamp('created_at');
