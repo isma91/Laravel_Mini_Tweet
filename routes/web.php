@@ -19,6 +19,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::post('/login', 'UserController@login');
+
 Route::get('/register', function () {
     return view('register');
 });
@@ -28,3 +30,5 @@ Route::post('/register', 'UserController@register');
 Route::get('/forgotPass', function () {
     return view('forgotPass');
 });
+
+Route::get('/home', 'PanelController@home');
