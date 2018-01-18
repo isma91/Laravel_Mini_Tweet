@@ -14,6 +14,13 @@
 </head>
 <body>
     <div class="container">
+        <div class="row">
+            @if(Session::has('message'))
+                <p class="toast rounded {{ Session::get('alert-class') }}">{{ Session::get('message') }}</p>
+            @endif
+        </div>
+    </div>
+    <div class="container">
         <div class="row center">
             <h1>Welcome to Todo List !!</h1>
             <h2>Please full in the form to create an account</h2>
