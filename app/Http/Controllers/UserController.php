@@ -11,7 +11,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function register(Request $request) {
+
+    public function checkAuth () {
+        if (Auth::check()) {
+            Session::flash('message', 'You can\'t go here when you\'re logged !!');
+            Session::flash('alert-class', 'alert-failed');
+            return false;
+        }
+        return true;
+    }
+
+    public function register (Request $request) {
         $errField = [];
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
@@ -86,6 +96,34 @@ class UserController extends Controller
         }
     }
 
+    /*public function display ($page) {
+        if (!$this->checkAuth()) {
+            return redirect('/home');
+        }
+        return view($page);
+    }*/
+
+    public function displayLogin () {
+        if (!$this->checkAuth()) {
+            return redirect('/home');
+        }
+        return view('login');
+    }
+
+    public function displayRegister () {
+        if (!$this->checkAuth()) {
+            return redirect('/home');
+        }
+        return view('register');
+    }
+
+    public function displayForgotPass () {
+        if (!$this->checkAuth()) {
+            return redirect('/home');
+        }
+        return view('forgotPass');
+    }
+
     public function login (Request $request) {
         $errField = [];
         $username = $request->input('username');
@@ -137,5 +175,10 @@ class UserController extends Controller
                 }
             }
         }
+    }
+
+    public function logout () {
+        Auth::logout();
+        return redirect('/login');
     }
 }
