@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/jquery-3.2.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/register.js') }}"></script>
     <title>Laravel</title>
 </head>
 <body>
@@ -19,7 +20,8 @@
         </div>
     </div>
     <div class="container">
-        <form class="row">
+        <form id="registerForm" action="{{ url('/register') }}" method="POST" class="row">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
@@ -56,7 +58,7 @@
                 </div>
             </div>
             <div class="row center">
-                <a class="btn waves-effect waves-light" id="signUp">Sign Up</a>
+                <button class="btn waves-effect waves-light" id="register" type="submit">Register</button>
             </div>
             <div class="row">
                 <a href="login" class="right">Already have an account ?</a>
