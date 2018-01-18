@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -70,7 +72,7 @@ class UserController extends Controller
                 'lastname' => $lastname,
                 'login' => $username,
                 'email' => $email,
-                'pass' => Hash::make($pass)
+                'password' => Hash::make($pass)
             ];
             $db = DB::table('users')->insert($user);
             if (!$db) {
@@ -81,6 +83,59 @@ class UserController extends Controller
                 Session::flash('alert-class', 'alert-success');
             }
             return redirect('/login');
+        }
+    }
+
+    public function login (Request $request) {
+        $errField = [];
+        $username = $request->input('username');
+        $pass = $request->input('password');
+        $allField = [
+            'login' => $username,
+            'password' => $pass
+        ];
+        foreach($allField as $filed => $value) {
+            if (empty(trim($value))) {
+                array_push($errField, $value);
+            }
+        }
+        $checkUsernameExist = DB::table('users')->select('login')->where('login',  '=', $username)->get();
+        if (count($errField) > 0) {
+            $fields = "";
+            foreach($errField as $key => $value) {
+                $fields = $fields . ", " . $value;
+            }
+            $fields = substr($fields, 2);
+            Session::flash('message', 'The following field are empty: ' . $fields . ' !!');
+            Session::flash('alert-class', 'alert-failed');
+        } elseif (strlen($pass) <= 3) {
+            Session::flash('message', 'The password field must be at least 4 characters long !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()->back();
+        } elseif (strlen($username) <= 3) {
+            Session::flash('message', 'The username must be at least 4 characters long !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()->back();
+        } elseif ($checkUsernameExist->isEmpty()) {
+            Session::flash('message', 'This username doesn\'t exist !!');
+            Session::flash('alert-class', 'alert-failed');
+            return redirect()->back();
+        } else {
+            $user = DB::table('users')->select('login', 'password', 'active')->where('login', '=', $username)->get();
+            $userActive = $user[0]->active;
+            if ($userActive !== 1) {
+                Session::flash('message', 'Your account was suspended, you must send an email to the admin to get it back !!');
+                Session::flash('alert-class', 'alert-failed');
+                return redirect()->back();
+            } else {
+                if (!Auth::attempt(['login' => $username, 'password' => $pass])) {
+                    Session::flash('message', 'Wrong username and/or password !!');
+                    Session::flash('alert-class', 'alert-failed');
+                    return redirect()->back();
+                } else {
+                    return redirect('/home');
+                }
+            }
         }
     }
 }
