@@ -17,8 +17,8 @@ class CreateTweetsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->text('favorite');
-            $table->text('love');
+            $table->text('favorite')->nullable();
+            $table->text('love')->nullable();
             $table->text('content');
             $table->integer('active')->default(1);
             $table->timestamp('created_at');
