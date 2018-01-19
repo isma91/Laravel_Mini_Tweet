@@ -28,7 +28,8 @@ html,body {
 .input-field input[type=password]:focus + label,
 .input-field input[type=password]:focus + label,
 .materialize-textarea:focus + label,
-.input-field .prefix.active {
+.input-field .prefix.active,
+.materialize-textarea:focus + label {
 	color: #000000 !important;
 }
 
@@ -36,6 +37,11 @@ html,body {
 .input-field input[type=password]:focus {
 	border-bottom: 1px solid #000000 !important;
 	box-shadow: 0 1px 0 0 #000000 !important;
+}
+
+textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
 }
 
 #toast-container {
@@ -50,9 +56,75 @@ html,body {
 	text-align: center;
 	background-color: #008000;
 }
-.alert-failed {
+.alert-failed,
+.danger-zone {
 	width: 100%;
 	margin: auto;
 	text-align: center;
 	background-color: #FF0000;
+}
+.side-nav {
+	width: 15%;
+}
+
+#body {
+	right: 15%;
+	width: 100%;
+}
+
+.side-nav p {
+	font-size: 1.5em;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-panel .btn-flat {
+	height: 100%;
+}
+
+.danger-zone {
+	border: solid 1px #000000;
+}
+
+#divUserAvatar,
+#visibilityFormTweet {
+	text-align: center;
+	cursor: pointer;
+	height: 10%;
+}
+
+#divUserAvatar i,
+#divUserAvatar img, {
+	width: 100%;
+	height: 100%;
+}
+
+#formAvatar {
+	display: none;
+	visibility: hidden;
+}
+
+#divFormTweet {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.tweet {
+	width: 100%;
+	text-align: center;
+}
+
+.tweetDate,
+.formLoveTweet {
+	float: left;
+}
+
+.formDeleteTweet {
+	float: right;
+	background-color: #FF0000;
+}
+
+.tweetContent {
+	white-space: pre-wrap;
 }
