@@ -41,3 +41,5 @@ Route::get('/forgotPass', 'UserController@displayForgotPass');
 Route::post('/logout', 'UserController@logout');
 
 Route::get('/home', 'PanelController@displayHome');
+
+Route::post('/sendTweet', 'TweetController@sendTweet');
