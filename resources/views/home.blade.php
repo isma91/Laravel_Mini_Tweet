@@ -54,8 +54,8 @@
             </form>
         </div>
         <div class="row center card-panel">
-            <p>{{ $user['firstname'] }}</p>
-            <p>{{ $user['lastname'] }}</p>
+            <p>{{ $user['firstname'] }} <i id="editFirstname" class="material-icons editIcon">mode_edit</i></p>
+            <p>{{ $user['lastname'] }} <i id="editLastname" class="material-icons editIcon">mode_edit</i></p>
             <p>{{ '@' . $user['login'] }}</p>
         </div>
         <div class="row card-panel">
