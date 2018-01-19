@@ -128,3 +128,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .tweetContent {
 	white-space: pre-wrap;
 }
+
+.editIcon {
+	cursor: pointer;
+}
