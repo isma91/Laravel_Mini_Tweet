@@ -20,4 +20,13 @@ class TweetController extends Controller
         }
         return redirect('/home');
     }
+
+    public function deleteTweet ($idTweet) {
+        $db = DB::table('tweets')->where('id', $idTweet)->update(['active' => 0]);
+        if (!$db) {
+            Session::flash('message', 'Something got wrong when we try to delete the tweet please retry or send email to the admin !!');
+            Session::flash('alert-class', 'alert-failed');
+        }
+        return redirect('/home');
+    }
 }
