@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PanelController extends Controller
 {
@@ -31,6 +32,18 @@ class PanelController extends Controller
             'avatar' => Auth::user()->avatar,
             'createdDate' => Auth::user()->created_at->toDateTimeString()
         ];
-        return view('home', $user);
+        $tweets = DB::table('tweets')->select()->where([
+            ['user_id', '=', Auth::user()->id],
+            ['active', '=', 1]
+        ])->get();
+        if (count($tweets) > 0) {
+            foreach ($tweets as $tweet) {
+                $tweet->content = preg_replace('/\<br(\s*)?\/?\>/i', PHP_EOL, $tweet->content);
+                $tweet->deleteUrl = url('/deleteTweet') . "/$tweet->id";
+                $tweet->loveUrl = url('/loveTweet') . "/$tweet->id";
+                $tweet->favoriteUrl = url('/favoriteTweet') . "/$tweet->id";
+            }
+        }
+        return view('home', ['user' => $user, 'tweets' => $tweets]);
     }
 }
