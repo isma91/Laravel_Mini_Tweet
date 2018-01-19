@@ -43,3 +43,5 @@ Route::post('/logout', 'UserController@logout');
 Route::get('/home', 'PanelController@displayHome');
 
 Route::post('/sendTweet', 'TweetController@sendTweet');
+
+Route::post('/deleteTweet/{idTweet}', 'TweetController@deleteTweet');
