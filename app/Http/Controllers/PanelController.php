@@ -35,7 +35,7 @@ class PanelController extends Controller
         $tweets = DB::table('tweets')->select()->where([
             ['user_id', '=', Auth::user()->id],
             ['active', '=', 1]
-        ])->get();
+        ])->paginate(3);
         if (count($tweets) > 0) {
             foreach ($tweets as $tweet) {
                 $tweet->content = preg_replace('/\<br(\s*)?\/?\>/i', PHP_EOL, $tweet->content);
