@@ -47,3 +47,5 @@ Route::post('/sendTweet', 'TweetController@sendTweet');
 Route::post('/logout', 'UserController@logout');
 
 Route::post('/deleteTweet/{idTweet}', 'TweetController@deleteTweet');
+
+Route::post('/searchUser', 'UserController@searchUser');
