@@ -32,12 +32,6 @@
                 </div>
             </div>
 		</form>
-        <div class="row card-panel danger-zone">
-            <form action="{{ url('/deleteAvatar') }}" method="POST">
-                {{ csrf_field() }}
-			    <button class="waves-effect btn-flat" type="submit">Delete Avatar</button>
-            </form>
-		</div>
         <div class="row card-panel">
             <form action="{{ url('/logout') }}" method="POST">
                 {{ csrf_field() }}
