@@ -34,4 +34,14 @@ $(document).ready(function () {
             $('#formTweet').submit();
         }
     });
+    
+    $('#userSearch').on('click', function (event) {
+        event.preventDefault();
+        userSearch = $.trim($("input[name=userSearch]").val());
+        if(userSearch) {
+            $('#formUserSearch').submit();
+        } else {
+            Materialize.toast('<p class="alert-failed">User name empty !!<p>', 4000, 'rounded alert-failed');
+        }
+    });
 })
