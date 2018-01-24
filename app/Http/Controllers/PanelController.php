@@ -29,7 +29,6 @@ class PanelController extends Controller
             'lastname' => Auth::user()->lastname,
             'login' => Auth::user()->login,
             'email' => Auth::user()->email,
-            'avatar' => Auth::user()->avatar,
             'createdDate' => Auth::user()->created_at->toDateTimeString()
         ];
         $tweets = DB::table('tweets')->select()->where([
