@@ -119,6 +119,9 @@
             @else
             @endif
         </div>
+        <div class="container">
+            {{ $tweets->links() }}
+        </div>
         <div id="divFormTweet" class="container">
             <form action="{{ url('/sendTweet') }}" method="POST" id="formTweet" class="container input-field col s12">
                 {{ csrf_field() }}
