@@ -21,26 +21,17 @@
         </div>
     </div>
     <div class="side-nav fixed">
-        <form id="formAvatar" action="{{ url('/uploadAvatar') }}" enctype="multipart/form-data" method="POST">
-			<div class="file-field input-field">
-				<div class="btn">
-					<span>File</span>
-					<input type="file" name="inputAvatar" id="inputAvatar" accept="image/*">
-				</div>
-				<div class="file-path-wrapper">
-					<input class="file-path validate" type="text">
-				</div>
-			</div>
-			<div class="row center">
-				<button class="waves-effect btn-flat" id="sendAvatar">Upload avatar</button>
-			</div>
+        <form id="formUserSearch" action="{{ url('/searchUser') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="userSearch" type="text" placeholder="Search User">
+                </div>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light" id="userSearch" type="submit">Search User<i class="material-icons right">search</i></button>
+                </div>
+            </div>
 		</form>
-        <div class="row" id="divUserAvatar">
-            @if(empty($user['avatar']))
-                <i class="large material-icons">add_a_photo</i>
-            @else
-            @endif
-        </div>
         <div class="row card-panel danger-zone">
             <form action="{{ url('/deleteAvatar') }}" method="POST">
                 {{ csrf_field() }}
