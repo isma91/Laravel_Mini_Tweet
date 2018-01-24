@@ -110,7 +110,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 	width: 100%;
 }
 
-.tweet {
+.tweet,
+.pagination {
 	width: 100%;
 	text-align: center;
 }
