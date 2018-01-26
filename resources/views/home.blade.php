@@ -102,6 +102,16 @@
                     </div>
                 @endforeach
             @else
+                <div class="container tweet">
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">No tweets here !!</span>
+                                <p class="tweetContent">Send a tweet to begin !!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
         </div>
         <div class="container">
