@@ -45,4 +45,8 @@ class PanelController extends Controller
         }
         return view('home', ['user' => $user, 'tweets' => $tweets]);
     }
+
+    public function displayUser ($userName) {
+        var_dump($userName);
+    }
 }
