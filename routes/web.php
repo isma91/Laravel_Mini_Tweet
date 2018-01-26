@@ -51,3 +51,5 @@ Route::post('/deleteTweet/{idTweet}', 'TweetController@deleteTweet');
 Route::post('/searchUser', 'UserController@searchUser');
 
 Route::get('/user/{userName}', 'PanelController@displayUser');
+
+Route::get('/user', 'PanelController@displayHome');
