@@ -181,4 +181,13 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function searchUser (Request $request) {
+        $userSearch = $request->input('userSearch');
+        $users = DB::table('users')->select('firstname', 'lastname', 'login', 'email', 'created_at')->where([
+            ['login', 'like', "%" . $userSearch . "%"],
+            ['active', '=', 1]
+        ])->paginate(3);
+        return view('displayUserSearch', ['users' => $users, 'userSearch' => $userSearch]);
+    }
 }
