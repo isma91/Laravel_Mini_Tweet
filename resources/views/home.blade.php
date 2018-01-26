@@ -32,7 +32,7 @@
                 </div>
             </div>
 		</form>
-        <div class="row card-panel">
+        <div class="row center card-panel">
             <form action="{{ url('/logout') }}" method="POST">
                 {{ csrf_field() }}
                 <button class="waves-effect btn-flat" type="submit">Logout</button>
